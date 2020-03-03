@@ -13,7 +13,7 @@ public class Producto {
     @Column
     private String nombre;
     @Column
-    private String pass;
+    private String cantidad;
 
     public int getId() {
         return id;
@@ -31,12 +31,12 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public String getPass() {
-        return pass;
+    public String getCantidad() {
+        return cantidad;
     }
 
-    public void setPass(String pass) {
-        this.pass = pass;
+    public void setCantidad(String cantidad) {
+        this.cantidad = cantidad;
     }
     
 }
