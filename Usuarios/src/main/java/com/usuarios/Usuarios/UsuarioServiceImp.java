@@ -17,27 +17,32 @@ public class UsuarioServiceImp implements UsuarioService {
 
     @Override
     public Usuario listarId(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return repositorio.findById(id);
     }
+    
+    
 
     @Override
     public Usuario add(Usuario p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return repositorio.save(p);
     }
 
     @Override
     public Usuario edit(Usuario p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return repositorio.save(p);
     }
+
 
     @Override
-    public Usuario delete(int p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    
+    public Usuario delete(int id) {
+        Usuario p=repositorio.findById(id);
+        if(p!=null){
+            repositorio.delete(p);
+        }
+        return p;
 
-    
-    
+    }
+
+     
     
 }
