@@ -15,6 +15,10 @@ public class Pedido implements Serializable {
     private String nombre;
     @Column
     private String numero;
+
+    public Pedido(String what) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 
     public int getId() {
