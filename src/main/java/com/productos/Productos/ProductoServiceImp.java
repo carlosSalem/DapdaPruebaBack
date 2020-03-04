@@ -17,26 +17,24 @@ public class ProductoServiceImp implements ProductoService {
 
     @Override
     public Producto listarId(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        return repositorio.findById(id);    }
 
     @Override
     public Producto add(Producto p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        return repositorio.save(p);    }
 
     @Override
     public Producto edit(Producto p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        return repositorio.save(p);    }
 
     @Override
-    public Producto delete(int p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Producto delete(int id) {
+        Producto p=repositorio.findById(id);
+        if(p!=null){
+            repositorio.delete(p);
+        }
+        return p;
     }
-    
-    
-
     
     
     
