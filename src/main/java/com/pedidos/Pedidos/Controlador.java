@@ -26,6 +26,12 @@ public class Controlador {
         return service.listar();
         
     }
+
+    /**
+     *
+     * @param p
+     * @return
+     */
     @PostMapping
     public Pedido agregar(@RequestBody Pedido p){
         return service.add(p);

@@ -14,11 +14,9 @@ public class Pedido implements Serializable {
     @Column
     private String nombre;
     @Column
-    private String numero;
+    private String cantidad;
 
-    public Pedido(String what) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+ 
     
 
     public int getId() {
@@ -37,12 +35,12 @@ public class Pedido implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getNumero() {
-        return numero;
+    public String getCantidad() {
+        return cantidad;
     }
 
-    public void setNumero(String numero) {
-        this.numero = numero;
+    public void setCantidad(String cantidad) {
+        this.cantidad = cantidad;
     }
    
     
