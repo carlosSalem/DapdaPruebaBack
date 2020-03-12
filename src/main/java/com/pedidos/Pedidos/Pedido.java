@@ -42,6 +42,10 @@ public class Pedido implements Serializable {
     public void setCantidad(String cantidad) {
         this.cantidad = cantidad;
     }
+
+    public Object getPedido() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
    
     
 }
