@@ -2,6 +2,7 @@ package com.pedidos.Pedidos;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class Controlador {
     @Autowired
     PedidoService service;
+    
     
     @GetMapping
     public List<Pedido>listar(){
@@ -50,6 +52,7 @@ public class Controlador {
     public Pedido delete(@PathVariable("id") int  id){
         return service.delete(id);
     }
+    
     
     
     

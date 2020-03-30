@@ -18,7 +18,7 @@ import org.springframework.kafka.support.serializer.JsonSerializer;
 public class KafkaConfig {
     
     @Bean
-    public ProducerFactory<String, SimpleModel> producerFactory(){
+    public ProducerFactory<String, Pedido> producerFactory(){
         Map<String, Object> config = new HashMap<>();
         
         config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
@@ -29,7 +29,7 @@ public class KafkaConfig {
     }
     
     @Bean
-    public KafkaTemplate<String, SimpleModel> kafkaTemplate(){
+    public KafkaTemplate<String, Pedido> kafkaTemplate(){
         return new KafkaTemplate<>(producerFactory());
     }
     

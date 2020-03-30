@@ -10,5 +10,7 @@ public interface PedidoService {
     Pedido add(Pedido p);
     Pedido edit(Pedido p);
     Pedido delete(int p);
+
+    
     
 }
