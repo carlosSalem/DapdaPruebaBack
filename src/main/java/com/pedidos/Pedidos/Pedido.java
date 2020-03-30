@@ -15,10 +15,22 @@ public class Pedido implements Serializable {
     private String nombre;
     @Column
     private String cantidad;
-
- 
     
-
+    
+    
+    //funcion que cambia el return del front para no coger @mierdas
+    @Override
+    public String toString(){ 
+        return nombre + " " + cantidad;
+        
+    }  
+   
+    //fin de la funcion
+    
+    
+    
+    
+    
     public int getId() {
         return id;
     }
