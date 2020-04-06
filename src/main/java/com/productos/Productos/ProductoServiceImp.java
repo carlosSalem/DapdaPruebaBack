@@ -36,6 +36,9 @@ public class ProductoServiceImp implements ProductoService {
         return p;
     }
     
-    
-    
+    //aqui se tiene que utilizar el metodo findByName
+//    public Producto listarNombre(String nombre){
+//        return repositorio.findByName(nombre);
+//    }
+    //fin
 }

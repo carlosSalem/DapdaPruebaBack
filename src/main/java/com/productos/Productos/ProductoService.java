@@ -11,4 +11,10 @@ public interface ProductoService {
     Producto edit(Producto p);
     Producto delete(int p);
     
+    //aki va
+    //Producto listarNombre(String nombre);
+    //añadir la funcion de coger cantidad para compararla con el pedido
+    
+    //fin
+    
 }
