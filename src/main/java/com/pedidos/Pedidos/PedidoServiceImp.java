@@ -40,13 +40,14 @@ public class PedidoServiceImp implements PedidoService  {
       
       KafkaController mandar = new KafkaController(kafkaTemplate);
       
+      //mandando pedido con kafka
       mandar.post(p);
         
+      //el guardado en la BBDD lo deberia de meter en un if()  
+      System.out.println("Guardando en DDBB" + " " + p);
         
-        System.out.println("Guardando en DDBB" + " " + p);
-        
-       
-        return repositorio.save(p);//funcion comprobar cantidad
+      //guardando pedido 
+      return repositorio.save(p);
         
         
     }
