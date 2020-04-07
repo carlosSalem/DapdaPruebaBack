@@ -27,10 +27,12 @@ public KafkaController(KafkaTemplate<String, Pedido> kafkaTemplate){
 @PostMapping
 public void post(Pedido p){ //aqui iba un RequestBody antes de pedido
    
+   
+    
     
     System.out.println(p);
     
-    System.out.print("posteando en kafka" + " ");
+    System.out.print("posteando en kafka " + p);
     kafkaTemplate.send("myTopic", p);
     }
 
