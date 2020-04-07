@@ -27,37 +27,40 @@ import org.springframework.kafka.support.serializer.JsonSerializer;
 @EnableKafka
 public class KafkaConfig {
     @Bean
-    public ProducerFactory<String, Producto> producerFactory(){
+    public ProducerFactory<String, String> producerFactory(){
         Map<String, Object> config = new HashMap<>();
         
         config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
         config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
+        config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         
         return new DefaultKafkaProducerFactory<>(config);
     }
     @Bean
-    public KafkaTemplate<String, Producto> kafkaTemplate(){
+    public KafkaTemplate<String, String> kafkaTemplate(){
         return new KafkaTemplate<>(producerFactory());
     }
     
     //consumidor
     @Bean
-    public ConsumerFactory<String, Producto> consumerFactory(){
-    
+    public ConsumerFactory<String, String> consumerFactory(){
+       
         Map<String, Object> config = new HashMap<>();
         
         config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
         config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-        config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
+        config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         config.put(ConsumerConfig.GROUP_ID_CONFIG, "myGroupId");
+        config.put(JsonDeserializer.TRUSTED_PACKAGES, "*"); //evita el error de no trusted_pachages
         
-        return new DefaultKafkaConsumerFactory<>(config, new StringDeserializer(), new JsonDeserializer<>(Producto.class));
+        //return new DefaultKafkaConsumerFactory<>(config, new StringDeserializer(), new JsonDeserializer<>(Pedido.class));
+                return new DefaultKafkaConsumerFactory<>(config, new StringDeserializer(), new StringDeserializer());
+
     }
     
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, Producto> kafkaListenerContainerFactory(){
-        ConcurrentKafkaListenerContainerFactory<String, Producto> concurrentKafkaListenerContainerFactory = new ConcurrentKafkaListenerContainerFactory<>();
+    public ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactory(){
+        ConcurrentKafkaListenerContainerFactory<String, String> concurrentKafkaListenerContainerFactory = new ConcurrentKafkaListenerContainerFactory<>();
         
         concurrentKafkaListenerContainerFactory.setConsumerFactory(consumerFactory());
         

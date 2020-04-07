@@ -3,44 +3,47 @@ package com.productos.Productos;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.annotation.KafkaHandler;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 
-@RequestMapping("/pedidos")
+@RestController
 public class KafkaController {
 
 
 
-public KafkaTemplate<String, Producto> kafkaTemplate;
+public KafkaTemplate<String, String> kafkaTemplate;
 
 @Autowired
-public KafkaController(KafkaTemplate<String, Producto> kafkaTemplate){
-        this.kafkaTemplate = kafkaTemplate;
-  
+public KafkaController(KafkaTemplate<String, String> kafkaTemplate){
+        this.kafkaTemplate = kafkaTemplate;//metodo objeto mandar string
+        //System.out.println(" kafka listener activado ");
     } 
 
  
     
 @PostMapping
-public void post(Producto p){ //aqui iba un RequestBody antes de pedido
+public void post(String r){ //aqui iba un RequestBody antes de pedido
    
-    
-    System.out.println(p);
+    // r sera la respuesta
+    System.out.println(r);
     
     System.out.print("mandando respuesta" + " ");
-    kafkaTemplate.send("myTopic2", p);
+    //kafkaTemplate.send("myTopic", p);
     }
 
 
     
-//listener recibe myTopic
-   @KafkaListener(topics = "myTopic") 
-   public void getFromKafka(Producto p){
-   
-       System.out.println(" Hemos recibido el pedido: " + p);
+    //aki peta
+   @KafkaListener(topics = "myTopic")
+   @KafkaHandler
+   public void getFromKafka(String p){
+       System.out.println("kafka listener activado:");
+       System.out.println("Hemos recibido el pedido: " + p);
    }   
     
 
