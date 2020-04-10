@@ -53,7 +53,7 @@ public class KafkaConfig {
         config.put(ConsumerConfig.GROUP_ID_CONFIG, "myGroupId");
         config.put(JsonDeserializer.TRUSTED_PACKAGES, "*"); //evita el error de no trusted_pachages
         
-        //return new DefaultKafkaConsumerFactory<>(config, new StringDeserializer(), new JsonDeserializer<>(Pedido.class));
+        
                 return new DefaultKafkaConsumerFactory<>(config, new StringDeserializer(), new StringDeserializer());
 
     }

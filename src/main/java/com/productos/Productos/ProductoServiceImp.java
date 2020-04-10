@@ -5,11 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-
-@Service
+//3*
+@Service //marcamos esta clase como un componente de servicio
+//para poder utilizarlo en el 
 public class ProductoServiceImp implements ProductoService {
     @Autowired
-    private ProductoRepositorio repositorio;
+    private ProductoRepositorio repositorio; //importamos ProductoRepositorio y lo llamamos repositorio
     @Override
     public List<Producto> listar() {
         return repositorio.findAll();
@@ -33,12 +34,13 @@ public class ProductoServiceImp implements ProductoService {
         if(p!=null){
             repositorio.delete(p);
         }
-        return p;
+        return p;    
     }
-    
-    //aqui se tiene que utilizar el metodo findByName
-//    public Producto listarNombre(String nombre){
-//        return repositorio.findByName(nombre);
-//    }
-    //fin
+ 
+    //metodo para usar con kafka
+    @Override
+     public Producto listarNombre(String nombre){
+        return repositorio.findByNombre(nombre);
+        }
+     //fin
 }

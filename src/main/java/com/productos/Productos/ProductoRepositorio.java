@@ -3,8 +3,8 @@ package com.productos.Productos;
 
 import java.util.List;
 import org.springframework.data.repository.Repository;
-
-
+//1*
+//<objeto, tipo dato>
 public interface ProductoRepositorio extends Repository<Producto, Integer> {
   
     List<Producto>findAll();
@@ -13,7 +13,15 @@ public interface ProductoRepositorio extends Repository<Producto, Integer> {
     void delete(Producto p);
     
     //Coger el nombre de la BBDD
-   // Producto findByName(String nombre);//cambiar a findByNombreDeLaTabla
+    //obj findByX(tipo campo)
+    Producto findByNombre(String nombre);//cambiar a findByNombreDeLaTabla
+//    Producto findByNombre(String cantidad);
     //fin
     
 }
+//public Misconones(cosa que devuele){ //aki se pone lo que devuelve
+//
+//nombrefuncion(elobjetoqueselepasa);
+//
+//
+//}
