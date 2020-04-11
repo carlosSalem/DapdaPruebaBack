@@ -14,7 +14,7 @@ public interface ProductoRepositorio extends Repository<Producto, Integer> {
     
     //Coger el nombre de la BBDD
     //obj findByX(tipo campo)
-    Producto findByNombre(String nombre);//cambiar a findByNombreDeLaTabla
+    List<Producto> findByNombreIgnoreCase(String nombre);//cambiar a findByNombreDeLaTabla
 //    Producto findByNombre(String cantidad);
     //fin
     

@@ -39,8 +39,8 @@ public class ProductoServiceImp implements ProductoService {
  
     //metodo para usar con kafka
     @Override
-     public Producto listarNombre(String nombre){
-        return repositorio.findByNombre(nombre);
+     public List<Producto> listarNombre(String nombre){
+        return repositorio.findByNombreIgnoreCase(nombre);
         }
      //fin
 }

@@ -13,7 +13,7 @@ public interface ProductoService {
     
     
     //aki va
-    Producto listarNombre(String nombre);
+    List<Producto> listarNombre(String nombre);
     //añadir la funcion de coger cantidad para compararla con el pedido
 //    Producto search(String cantidad);
     //fin

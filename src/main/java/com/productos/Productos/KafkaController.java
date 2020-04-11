@@ -1,8 +1,11 @@
 package com.productos.Productos;
 
 
-
+import com.productos.Productos.Pedido;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import static org.aspectj.weaver.Iterators.array;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaHandler;
@@ -34,11 +37,11 @@ public KafkaController(KafkaTemplate<String, String> kafkaTemplate){
 @PostMapping
 public void post(String r){ //aqui iba un RequestBody antes de pedido
    
-    // r sera la respuesta
+    
     System.out.println(r);
     
-    System.out.print("mandando respuesta" + " ");
-    //kafkaTemplate.send("myTopic", p);
+    System.out.print("mandando respuesta" + r);
+    kafkaTemplate.send("myTopic", r);
     }
 
 
@@ -51,59 +54,47 @@ public void post(String r){ //aqui iba un RequestBody antes de pedido
 @KafkaListener(topics = "myTopic")
 @KafkaHandler
      public void getFromKafka(String[] pe){
-       System.out.println("kafka listener activado:" + pe);
-       //System.out.println("Hemos recibido el pedido: " + Arrays.toString(pe));
-       
-        //String name = pe.
-       
-       //System.out.println("extrayendo del mensaje y dividiendolo en " + pe[1] + pe[2]);
-       //pasando a String el nombre de arrayString
-       //String nombrePe = pe[1];
-       
-       String nombrePe = pe.nombre;
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       System.out.println("producto encontrado " + nombrePe);
-      // String nombrePe = "ford focus";
-       
-       
-       
-       Producto pr = service.listarNombre(nombrePe); //devuelve null si no lo encuentra.
-       //pr.setNombre(nombrePe);
-       //inicializando variable nombre
-       //String nombre = null;
-       //String cantidadPr=null;
-       //llamar metodo que busque en la BBDD por nombre
-       
-       //service.listarNombre(nombrePe);
-       
-       //pr = service.listarNombre(nombrePe); // No se como hago para que devuelva la busqueda.
-       
+         
+       System.out.println("El pedido sin hash:" + pe);
+       String cantidadPedido = pe[2].toString();
+       System.out.println("La candidad del pedido es:" + cantidadPedido);
+       int finC=pe[2].length();
+       String cantidadPe = pe[2].substring(12, finC-2);
+       System.out.println("La candidad sin comillas es:" + cantidadPe);
 
-       //repositorio.findByNombre(nombre);
-       System.out.println("producto encontrado " + pr);
+
+       
+       int fin=pe[1].length();
+       String nombrePe = pe[1].substring(10, fin-1);
+       System.out.println ("buscando producto con el nombre: " + nombrePe);
+       String producto = service.listarNombre(nombrePe).toString();
+       System.out.println("producto encontrado: " + producto);
+       String cantidadPr = producto.replaceAll("[^0-9]", "");
+       System.out.println("Digitos extraidos del producto: " + cantidadPr);
+       System.out.println("Pasando datos a integers ");
        
        
+       int ro = Integer.parseInt(cantidadPr.trim());
+       int p = Integer.parseInt(cantidadPe.trim());
+       
+       System.out.println("cantidad en integer de Pedido: " + p);
+       System.out.println("cantidad en integer de Producto: " + ro);
        
        
+       String r = "";
+       if (  p < ro ) {
+           r = "si";
+       } else {
+           r = "no";
+       }
        
-       //comprobar en la BBDD si existe el producto
+       System.out.println("puedes hacer el pedido?: " + r);
+       post(r);
+       
+      //hacer un comparador, meter la respuest en r
+      //y llamar al metodo post de arriba
        
        
-       //para comparar los datos de cantidad
-       //Integer.parseInt(pe[1]) == Integer.parseInt("04")
        
    }
      
