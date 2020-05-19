@@ -2,6 +2,8 @@ package com.usuarios.Usuarios;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+//import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 
 
@@ -14,6 +16,7 @@ public class UsuarioServiceImp implements UsuarioService {
     public List<Usuario> listar() {
         return repositorio.findAll();
     }
+    //List<GrantedAuthority> authorities = usuario.getRoles();
 
     @Override
     public Usuario listarId(int id) {

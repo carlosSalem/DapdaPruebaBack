@@ -1,32 +1,25 @@
 package com.usuarios.Usuarios;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.*;
 
 
 @Entity
-@Table(name = "usuarios")
-public class Usuario implements Serializable {
+@Table(name = "roles")
+public class Role implements Serializable {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @Column
+    private long id;
+    @Column(unique=true, length=20)
     private String nombre;
-    @Column(length=60)
+    @Column
     private String pass;
     
-    private Boolean enabled;
-    
-    @ManyToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL) 
-    private List<Role> roles;
-    
-    
-    /****/
+     /****/
     private static final long serialVersion = 1L;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

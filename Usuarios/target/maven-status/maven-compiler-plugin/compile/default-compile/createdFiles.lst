@@ -1,6 +1,7 @@
 com\usuarios\Usuarios\Usuario.class
 com\usuarios\Usuarios\UsuariosApplication.class
 com\usuarios\Usuarios\UsuarioService.class
+com\usuarios\Usuarios\Role.class
 com\usuarios\Usuarios\Controlador.class
 com\usuarios\Usuarios\UsuarioServiceImp.class
 com\usuarios\Usuarios\UsuarioRepositorio.class
